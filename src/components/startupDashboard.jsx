@@ -95,7 +95,7 @@ const StartupDashboard = () => {
   
   const handleUpdateSales = () => {
     
-    fetch('http://localhost:5000/updateSales/'+CompanyName, {
+    fetch('https://fundrev-backend-q8xm.onrender.com/updateSales/'+CompanyName, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const StartupDashboard = () => {
   const fetchSalesData = () => {
   setLoading(true);
 
-  fetch('http://localhost:5000/startup/' + CompanyName)
+  fetch('https://fundrev-backend-q8xm.onrender.com/startup/' + CompanyName)
     .then((response) => response.json())
     .then((data) => {
       const salesDataArray = Object.entries(data.startup.salesData).map(([year, salesObj]) => ({

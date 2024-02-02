@@ -16,7 +16,7 @@ const InvestorDashboard = () => {
   const fetchCompanies = () => {
     setLoading(true);
 
-    fetch('http://localhost:5000/allCompanies')
+    fetch('https://fundrev-backend-q8xm.onrender.com/allCompanies')
       .then((response) => response.json())
       .then((data) => {
         setCompanies(data.companies);
