@@ -25,7 +25,7 @@ const InputCredentials = (props) => {
     async function handlSubmit(){
         let Link="",jsonData="";
         if(investorFormData.businessDescription===''){
-            Link = 'http://localhost:5000/addinvestor';
+            Link = 'https://fundrev-backend-q8xm.onrender.com/addinvestor';
             const formDataCopy = { ...investorFormData };
             delete formDataCopy.businessDescription;
             delete formDataCopy.revenue;
@@ -33,7 +33,7 @@ const InputCredentials = (props) => {
             setinvestorFormData(formDataCopy);
         }
         else{
-            Link = 'http://localhost:5000/addstartup';
+            Link = 'https://fundrev-backend-q8xm.onrender.com/addstartup';
             jsonData = JSON.stringify(investorFormData);
         }
         console.log(jsonData)
@@ -46,6 +46,7 @@ const InputCredentials = (props) => {
             },
             body: jsonData
           });
+          Navigate("/Login")
         }
         catch(error){
             console.log(error);
@@ -59,7 +60,7 @@ const InputCredentials = (props) => {
         const jsonData = JSON.stringify(formDataCopy);
         setinvestorFormData(formDataCopy);
         try{
-            Link = props.mode==="Investor"?"http://localhost:5000/checkinvestorpassword":"http://localhost:5000/checkstartuppassword"
+            Link = props.mode==="Investor"?"https://fundrev-backend-q8xm.onrender.com/checkinvestorpassword":"https://fundrev-backend-q8xm.onrender.com/checkstartuppassword"
             console.log(Link)
             const response = await fetch(Link, {
             method: 'POST',

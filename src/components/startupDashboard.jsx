@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Button } from '@mui/joy';
 import Papa from 'papaparse';
 import Plot from 'react-plotly.js';
 import './css/dashboard.css';
@@ -134,16 +135,20 @@ const StartupDashboard = () => {
 
   return (
     <section className='Dashboard'>
-      <h1 className='Company-name'>{CompanyName}</h1>
-      <h1 className='Company-name'>Revenue-{revenue}</h1>
-      <button onClick={handleUpdateSales}>Update Sales</button>
-      <input
-        id='avatar'
-        type='file'
-        name='avatar'
-        accept='.csv'
-        onChange={handleFileUpload}
-      />
+      <h1 className='username'>{CompanyName}</h1>
+      <h1 className='sentence'>Revenue-{revenue}</h1>
+      <div className='update'>
+        <input
+          id='avatar'
+          type='file'
+          name='avatar'
+          accept='.csv'
+          onChange={handleFileUpload}
+        />
+        <Button className="update-btn" onClick={handleUpdateSales}>Update Sales</Button>
+
+      </div>
+      
       
       <Plot
       data={filteredSalesData.map(({ year, sales }) => ({

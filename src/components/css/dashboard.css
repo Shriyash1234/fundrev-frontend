@@ -16,12 +16,21 @@ input::file-selector-button {
     font-size: 2rem;
 }
 .sentence{
+    font-family: 'Open Sans';
     font-size: 1.2rem;
 }
 .companies{
     display: flex;
     flex-wrap: wrap;
 }
+.update{
+    display: flex;
+    flex-direction: column;
+}
 .company-card{
     margin: 0px 20px 0px 0px;
+}
+.update-btn{
+    margin-top: 20px;
+    width: fit-content
 }
