@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/fundrev-frontend/static/css/main.fc04643a.css",
+    "main.js": "/fundrev-frontend/static/js/main.6ae9d0b2.js",
+    "static/js/787.ee390dd0.chunk.js": "/fundrev-frontend/static/js/787.ee390dd0.chunk.js",
+    "static/media/startup.png": "/fundrev-frontend/static/media/startup.c9d6f64f15ad0deaa003.png",
+    "static/media/investor.png": "/fundrev-frontend/static/media/investor.06273634b89787ec09df.png",
+    "index.html": "/fundrev-frontend/index.html",
+    "main.fc04643a.css.map": "/fundrev-frontend/static/css/main.fc04643a.css.map",
+    "main.6ae9d0b2.js.map": "/fundrev-frontend/static/js/main.6ae9d0b2.js.map",
+    "787.ee390dd0.chunk.js.map": "/fundrev-frontend/static/js/787.ee390dd0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc04643a.css",
+    "static/js/main.6ae9d0b2.js"
+  ]
+}
