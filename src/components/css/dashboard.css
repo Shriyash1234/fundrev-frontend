@@ -1,0 +1,27 @@
+.Dashboard{
+    padding: 20px 60px;
+}
+.Company-name{
+    font-size: 2.5rem
+}
+input::file-selector-button {
+    font-weight: bold;
+    color: dodgerblue;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+  }
+.username{
+    font-family: 'Open Sans';
+    font-size: 2rem;
+}
+.sentence{
+    font-size: 1.2rem;
+}
+.companies{
+    display: flex;
+    flex-wrap: wrap;
+}
+.company-card{
+    margin: 0px 20px 0px 0px;
+}
