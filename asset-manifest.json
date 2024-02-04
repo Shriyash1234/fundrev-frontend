@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/fundrev-frontend/static/css/main.fbfb2990.css",
-    "main.js": "/fundrev-frontend/static/js/main.ab649187.js",
+    "main.css": "/fundrev-frontend/static/css/main.2ba795d1.css",
+    "main.js": "/fundrev-frontend/static/js/main.08a69db0.js",
     "static/js/787.ee390dd0.chunk.js": "/fundrev-frontend/static/js/787.ee390dd0.chunk.js",
     "static/media/startup.png": "/fundrev-frontend/static/media/startup.c9d6f64f15ad0deaa003.png",
     "static/media/investor.png": "/fundrev-frontend/static/media/investor.06273634b89787ec09df.png",
+    "static/media/approve.png": "/fundrev-frontend/static/media/approve.236cc6761d103c7e161f.png",
+    "static/media/decline.png": "/fundrev-frontend/static/media/decline.63a08b5c3eb5f9cfc7f9.png",
     "index.html": "/fundrev-frontend/index.html",
-    "main.fbfb2990.css.map": "/fundrev-frontend/static/css/main.fbfb2990.css.map",
-    "main.ab649187.js.map": "/fundrev-frontend/static/js/main.ab649187.js.map",
+    "main.2ba795d1.css.map": "/fundrev-frontend/static/css/main.2ba795d1.css.map",
+    "main.08a69db0.js.map": "/fundrev-frontend/static/js/main.08a69db0.js.map",
     "787.ee390dd0.chunk.js.map": "/fundrev-frontend/static/js/787.ee390dd0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fbfb2990.css",
-    "static/js/main.ab649187.js"
+    "static/css/main.2ba795d1.css",
+    "static/js/main.08a69db0.js"
   ]
 }
