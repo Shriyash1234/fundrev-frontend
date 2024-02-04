@@ -36,9 +36,7 @@ const InputCredentials = (props) => {
             Link = 'https://fundrev-backend-q8xm.onrender.com/addstartup';
             jsonData = JSON.stringify(investorFormData);
         }
-        console.log(jsonData)
         try{
-            console.log(Link)
             const response = await fetch(Link, {
             method: 'POST',
             headers: {
@@ -61,7 +59,6 @@ const InputCredentials = (props) => {
         setinvestorFormData(formDataCopy);
         try{
             Link = props.mode==="Investor"?"https://fundrev-backend-q8xm.onrender.com/checkinvestorpassword":"https://fundrev-backend-q8xm.onrender.com/checkstartuppassword"
-            console.log(Link)
             const response = await fetch(Link, {
             method: 'POST',
             headers: {
@@ -71,7 +68,6 @@ const InputCredentials = (props) => {
           });
           if (response.ok) {
             const data = await response.json();
-            console.log(data.message)
             if(data.message === "ok"){
                 if(props.mode==="Startup"){
                     Navigate("/dashboard/startup",{state:{

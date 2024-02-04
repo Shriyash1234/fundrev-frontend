@@ -13,7 +13,7 @@ input::file-selector-button {
   }
 .username{
     font-family: 'Open Sans';
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .sentence{
     font-family: 'Open Sans';
@@ -28,9 +28,109 @@ input::file-selector-button {
     flex-direction: column;
 }
 .company-card{
-    margin: 0px 20px 0px 0px;
+    margin: 20px 20px;
 }
 .update-btn{
     margin-top: 20px;
     width: fit-content
+}
+.plotAndRequests{
+    display: flex;
+}
+.approveRequests{
+    display: flex;
+}
+.request-symbol{
+    height: 16px;
+}
+.approve-request{
+    color: #00df76 !important;
+}
+.decline-request{
+    color: #ee404c !important;
+}
+.pending-requests-text{
+    font-family: 'Open sans';
+    font-size: 1.5rem;
+}
+.sales-plot{
+    display: flex;
+    justify-content: center;
+}
+.startup-plot{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+.PendingRequests{
+    margin-left: 30px;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.pending-requests-txt{
+    margin-left: 30px;
+    margin-bottom: 0px;
+    font-family: 'Open sans';
+    font-size: 1.2rem;
+}
+.card-investor-name{
+    font-size: 1.3rem !important;
+    font-family: 'Open sans' !important;
+}
+.update{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.plot2,.plot3,.plot4{
+    display: none !important;
+}
+@media all and (max-width:991px) {
+    .plotAndRequests{
+        flex-direction: column;
+    }
+    .plot1{
+        display: none !important;
+    }
+    .plot2{
+        display: block !important;
+    }
+}
+@media all and (max-width:768px) {
+    .plot2{
+        display: none !important;
+    }
+    .plot3{
+        display: block !important;
+    }
+}
+@media all and (max-width:576px) {
+    .plot3{
+        display: none !important;
+    }
+    .plot4{
+        display: block !important;
+    }
+    .startup-plot{
+        width: 90vw;
+    }
+    .Dashboard{
+        padding: 20px 10px;
+    }
+    .approveRequests{
+        flex-direction: column;
+    }
+    .company-card{
+        width: 90% !important;
+    }
+    .PendingRequests{
+        margin: 30px 20px;
+    }
+}
+@media all and (max-width:479px) {
+    .js-plotly-plot{
+        width: 400px;
+    }
 }

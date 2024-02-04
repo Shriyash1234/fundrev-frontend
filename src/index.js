@@ -7,6 +7,7 @@ import Login from './components/login';
 import Signup from './components/signup';
 import StartupDashboard from './components/startupDashboard';
 import InvestorDashboard from './components/investorDashboard';
+import InvestorStartupSales from './components/investorStartupSales';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route index path="/signup" element={<Signup />} />
         <Route index path="/Dashboard/startup" element={<StartupDashboard />} />
         <Route index path="/Dashboard/investor" element={<InvestorDashboard />} />
+        <Route index path="/investorStartupSales" element={<InvestorStartupSales />} />
       </Routes>
     </HashRouter>
   );

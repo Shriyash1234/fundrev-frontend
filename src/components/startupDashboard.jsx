@@ -1,6 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button } from '@mui/joy';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import Papa from 'papaparse';
 import Plot from 'react-plotly.js';
 import './css/dashboard.css';
@@ -8,12 +13,14 @@ import './css/dashboard.css';
 const StartupDashboard = () => {
   const [salesData, setSalesData] = useState([]);
   const [selectedYear, setSelectedYear] = useState(null);
+  const [incomingRequests, setIncomingRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
   const { CompanyName, businessDescription, revenue } = location.state;
-  // console.log(CompanyName);
-  // console.log(businessDescription);
-  // console.log(revenue)
   useEffect(() => {
     fetchSalesData();
   }, []);
@@ -38,34 +45,7 @@ const StartupDashboard = () => {
     }
   };
 
-  const handleYearChange = (event) => {
-    const selectedYear = event.target.value;
-    setSelectedYear(selectedYear);
-  };
-
   const groupSalesByMonth = (data) => {
-    const salesByYear = {};
-  
-    data.forEach((row) => {
-      const date = new Date(row['Order Date']);
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const monthKey = `${month}-${year}`;
-  
-      if (!salesByYear[year]) {
-        salesByYear[year] = Array(12).fill(0); 
-      }
-  
-      salesByYear[year][month - 1] += row['Sales'];
-    });
-    const salesByYearArray = Object.entries(salesByYear).map(([year, sales]) => ({
-      year: parseInt(year),
-      sales,
-    }));
-  
-    return salesByYearArray;
-  };
-  const groupSalesByMonthAPI = (data) => {
     const salesByYear = {};
   
     data.forEach((row) => {
@@ -108,7 +88,6 @@ const StartupDashboard = () => {
       })
       .catch((error) => {
         console.error('Error updating sales data:', error);
-        // Handle errors appropriately
       });
   };
   const fetchSalesData = () => {
@@ -123,20 +102,120 @@ const StartupDashboard = () => {
       }));
       
       setSalesData(salesDataArray);
-      console.log(salesDataArray);
       setLoading(false);
     })
     .catch((error) => {
       console.error('Error fetching sales data:', error);
       setLoading(false);
     });
-};
+  };
 
-
+  const fetchPendingRequests = () => {
+    setLoading(true);
+  
+    fetch(`https://fundrev-backend-q8xm.onrender.com/incomingRequests/${CompanyName}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const pendingRequests = data.requests.filter((request) => request.status === 'pending');
+        setIncomingRequests(pendingRequests);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching pending requests:', error);
+        setLoading(false);
+      });
+  };
+  
+    const handleChangeRequestStatus = (requestId, status) => {
+      fetch('https://fundrev-backend-q8xm.onrender.com/changeRequestStatus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          requestId,
+          status,
+        }),
+      })
+        .then((response) => response.json())
+        .then((updatedRequest) => {
+          console.log(`Request ${status}:`, updatedRequest);
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error(`Error ${status}ing request:`, error);
+        });
+    };
+  useEffect(()=>{
+    fetchPendingRequests();
+  },[])
   return (
     <section className='Dashboard'>
       <h1 className='username'>{CompanyName}</h1>
       <h1 className='sentence'>Revenue-{revenue}</h1>
+      
+      <div className='plotAndRequests'>
+      <div className='startup-plot'>
+        <Plot
+        className='plot1'
+        data={filteredSalesData.map(({ year, sales }) => ({
+          type: 'bar',
+          x: months, 
+          y: sales,
+          name: year.toString(),
+        }))}
+        layout={{
+          title: 'Monthly Sales',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Sales' },
+          autosize: true, 
+        }}
+      />
+       <Plot
+       className='plot2'
+        data={filteredSalesData.map(({ year, sales }) => ({
+          type: 'bar',
+          x: months, 
+          y: sales,
+          name: year.toString(),
+        }))}
+        layout={{
+          title: 'Monthly Sales',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Sales' },
+          width:600
+        }}
+      />
+       <Plot
+       className='plot3'
+        data={filteredSalesData.map(({ year, sales }) => ({
+          type: 'bar',
+          x: months, 
+          y: sales,
+          name: year.toString(),
+        }))}
+        layout={{
+          title: 'Monthly Sales',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Sales' },
+          width:400
+        }}
+      />
+       <Plot
+       className='plot4'
+        data={filteredSalesData.map(({ year, sales }) => ({
+          type: 'bar',
+          x: months, 
+          y: sales,
+          name: year.toString(),
+        }))}
+        layout={{
+          title: 'Monthly Sales',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Sales' },
+          width:400
+        }}
+      />
       <div className='update'>
         <input
           id='avatar'
@@ -148,21 +227,39 @@ const StartupDashboard = () => {
         <Button className="update-btn" onClick={handleUpdateSales}>Update Sales</Button>
 
       </div>
+      </div>
+      <div className='PendingRequests'>
+        <p className='pending-requests-txt'>Pending Requests</p>
+        {incomingRequests.map((request)=>(
+          <Box className="company-card" sx={{ width: 380, marginBottom: 2 }}>
+          <Card variant="outlined">
+            <CardContent>
+              <Typography variant="h5" component="div" className='card-investor-name'>
+                {request.investorName}
+              </Typography>
+            </CardContent>
+            <div className='approveRequests'>
+              <CardActions>
+                <Button 
+                  size="small" 
+                  className='approve-request'
+                  onClick={() => handleChangeRequestStatus(request._id, 'accepted')}>
+                  <img className='request-symbol' src={require('../Assests/images/approve.png')}/>&nbsp; Approve Request</Button>
+              </CardActions>
+              <CardActions>
+                <Button 
+                size="small" 
+                className='decline-request'
+                onClick={() => handleChangeRequestStatus(request._id, 'rejected')}>
+                  <img className='request-symbol' src={require('../Assests/images/decline.png')}/>&nbsp; Decline Request</Button>
+              </CardActions>
+            </div>
+          </Card>
+        </Box>
+        ))}
+      </div>
+      </div>
       
-      
-      <Plot
-      data={filteredSalesData.map(({ year, sales }) => ({
-        type: 'bar',
-        x: Array.from({ length: 12 }, (_, i) => i + 1), 
-        y: sales,
-        name: year.toString(),
-      }))}
-      layout={{
-        title: 'Monthly Sales',
-        xaxis: { title: 'Month' },
-        yaxis: { title: 'Sales' },
-      }}
-    />
     </section>
   );
 };
